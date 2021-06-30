@@ -6,14 +6,14 @@ import { useShowTime } from '../../context/showTimes';
 import ItemMovieReduced from '../ItemMovieReduced';
 import ItemShowTime from '../ItemShowTime';
 import IReservation from '../../models/Reservations';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Reservation = () => {
 
   const {setShowTimeActual,showTimeActual} = useShowTime();
   const {movieActual,setMovieActual} = useMovie();
-  const {setReservationActual,reservations} = useReservation();
+  const {setReservationActual,reservations,setReservations} = useReservation();
 
   
   const [tickets, setTickets] = useState(1);
@@ -25,7 +25,32 @@ const Reservation = () => {
   };
 
 
- 
+  const saveReservation = (reserva : IReservation) => {
+    try{
+     
+    AsyncStorage.getItem('reservas', (err, result) => {
+       
+        if (result !== null) {
+          console.log('Data Found', result);
+
+          var listaReserva = JSON.parse(result!).concat(reserva);
+          AsyncStorage.setItem('reservas', JSON.stringify(listaReserva));
+          setReservations(listaReserva);
+        } else {
+          console.log('Data Not Found');
+          var listaReservas : IReservation[] = [];
+          listaReservas.push(reserva);
+          AsyncStorage.setItem('reservas', JSON.stringify(listaReservas));
+          setReservations(listaReservas);
+       }
+      });
+      
+}
+catch(error){
+    console.log(error);
+}
+    
+};
   
   const reservarPress = () => {
     
@@ -37,8 +62,7 @@ const Reservation = () => {
       price: 6,
       total: Number(number) * Number(6)
    };
-
-   setReservationActual(reservation);
+   saveReservation(reservation);
    setMovieActual(null);
    setShowTimeActual(null);
   

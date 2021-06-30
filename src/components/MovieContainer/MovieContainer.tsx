@@ -31,17 +31,9 @@ const MovieContainer = () => {
     callFetchMovies();
   }, []);
 
-  //const {fetchUsuarios, usuarios} = useAuthentication();
 
-  //console.log(albumSeleccionado);
-
-//
-
-//const image = { uri: ".\assets\backgrounds\popcorn-bk.png" };
-//
-    //<Text style={{fontSize: 22 , alignContent:'center' ,}}>Peliculas</Text>
   return (
-   <View >
+   <View style={{marginBottom:50}} >
      
      {movieActual ? showTimeActual ? (<Reservation  />) : (<ListaShowTime movie={movieActual} />) : (<ListaMovie />)}
     

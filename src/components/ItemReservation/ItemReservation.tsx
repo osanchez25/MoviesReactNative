@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, {Dispatch, SetStateAction} from 'react';
 import {Text, StyleSheet, TouchableOpacity, Image, View} from 'react-native';
 import { useReservation } from '../../context/reservations';
@@ -8,7 +9,7 @@ interface ItemReservationProps {
 }
 
 const ItemReservation: React.FC<ItemReservationProps> = ({reservation}) => {
-  
+  const date = moment(reservation.showTime.ShowDate); 
   return (
     <TouchableOpacity  >
       <View style={{marginVertical: 12}}>
@@ -39,7 +40,7 @@ const ItemReservation: React.FC<ItemReservationProps> = ({reservation}) => {
                         
                         color: '#64676D',
                       }}>
-                      Entradas Reservadas : {reservation.amountTickets} m 
+                      Entradas Reservadas : {reservation.amountTickets} 
                     </Text>
                     
                   </View>
@@ -58,6 +59,25 @@ const ItemReservation: React.FC<ItemReservationProps> = ({reservation}) => {
                         color: '#64676D',
                       }}>
                       Total: ${reservation.total}
+                    </Text>
+                      
+                  
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginTop: 3,
+                      alignItems: 'center',
+                    }}>
+                    
+                    
+                      <Text
+                      style={{
+                        fontSize: 18,
+                       
+                        color: '#000',
+                      }}>
+                      {date.calendar()}
                     </Text>
                       
                   

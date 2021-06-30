@@ -1,1 +1,1 @@
-export {default} from './ListaMovie';
+export {default} from './ListaReservation';

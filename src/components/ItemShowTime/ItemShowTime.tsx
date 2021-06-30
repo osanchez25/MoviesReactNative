@@ -31,7 +31,7 @@ const ItemShowTime: React.FC<ItemShowTimeProps> = ({showTime}) => {
     
 
       <Text style={styles.text}>Fecha : {date.calendar()}</Text>
-       <Text style={styles.text}>{cinema}</Text>
+      <Text style={styles.text}>{cinema}</Text>
       <Text style={styles.text}>Lenguaje: {showTime.Language} </Text>
       <Text style={styles.text}>Formato: {showTime.Format} </Text>
 

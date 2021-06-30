@@ -27,7 +27,7 @@ const ReservationContainer = () => {
   }, []);
 
   return (
-   <View >
+   <View style={{marginBottom: 50}}>
      
      {<ListaReservation />}
     

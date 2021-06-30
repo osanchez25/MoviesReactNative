@@ -1,1 +1,1 @@
-export {default} from './ItemMovie';
+export {default} from './ItemReservation';

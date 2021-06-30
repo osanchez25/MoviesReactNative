@@ -1,6 +1,7 @@
 // High Order Component o HOC
 import axios from 'axios';
 import React, {createContext, useContext, useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import IReservation from '../models/Reservations';
 
 interface ReservationsContextProps {
@@ -24,20 +25,18 @@ export const ReservationProvider: React.FC = ({children}) => {
   const [reservations, setReservations] = useState<IReservation[]>([]);
 
   const fetchReservations = async () => {
-    try {
-
-      //obtener de alamacenamiento
-      const reservations = await axios.get(
-        'https://reservationextractions.azurewebsites.net/api/reservations',
-      );
-
-    
-      setReservations(reservations.data);
 
 
-    } catch (error) {
-      console.log(error);
-    }
+    try{
+      let listaReservas = await AsyncStorage.getItem('reservas');
+      let reservations =(JSON.parse(listaReservas!)) as  IReservation[];
+      setReservations(reservations);
+      }
+      catch(error){
+        console.log(error);
+      }
+
+ 
   };
 
   const val = {
