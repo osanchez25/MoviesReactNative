@@ -9,6 +9,7 @@ import ListaMovie from '../ListaMovie';
 import ListaShowTime from '../ListaShowTime';
 import { useShowTime } from '../../context/showTimes';
 import Reservation from '../Reservation';
+import { useReservation } from '../../context/reservations';
 
 const MovieContainer = () => {
 
@@ -19,6 +20,7 @@ const MovieContainer = () => {
 
   
   const {fetchMovies, movies, movieActual} = useMovie();
+  const {fetchReservations} = useReservation();
   const {showTimeActual} = useShowTime();
 
   //console.log(movies);
@@ -26,6 +28,7 @@ const MovieContainer = () => {
   useEffect(() => {
     async function callFetchMovies() {
       await fetchMovies();
+      await fetchReservations();
     }
 
     callFetchMovies();
