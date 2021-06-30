@@ -55,7 +55,7 @@ catch(error){
   const reservarPress = () => {
     
     var reservation :IReservation = {
-      reservationID : reservations.length+1,
+      reservationID : reservations? reservations.length+1: 1,
       amountTickets : number ? number! : 1,
       movie: movieActual!,
       showTime: showTimeActual!,
