@@ -20,7 +20,7 @@ const MovieContainer = () => {
 
   
   const {fetchMovies, movies, movieActual} = useMovie();
-  const {fetchReservations} = useReservation();
+ 
   const {showTimeActual} = useShowTime();
 
   //console.log(movies);
@@ -28,7 +28,7 @@ const MovieContainer = () => {
   useEffect(() => {
     async function callFetchMovies() {
       await fetchMovies();
-      await fetchReservations();
+     
     }
 
     callFetchMovies();
